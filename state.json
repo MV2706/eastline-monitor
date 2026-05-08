@@ -1,0 +1,65 @@
+{
+  "2BR 2.5BA w/Den (1417 SF)": {
+    "status": "inquire",
+    "count": 0,
+    "available_on": null,
+    "price_low": 0,
+    "price_high": 0
+  },
+  "2BR 2BA (1223 SF)": {
+    "status": "inquire",
+    "count": 0,
+    "available_on": null,
+    "price_low": 0,
+    "price_high": 0
+  },
+  "2BR 2BA (1224 SF)": {
+    "status": "inquire",
+    "count": 0,
+    "available_on": null,
+    "price_low": 0,
+    "price_high": 0
+  },
+  "2BR 2BA (1247 SF)": {
+    "status": "inquire",
+    "count": 0,
+    "available_on": null,
+    "price_low": 0,
+    "price_high": 0
+  },
+  "2BR 2BA (1251 SF)": {
+    "status": "inquire",
+    "count": 0,
+    "available_on": null,
+    "price_low": 0,
+    "price_high": 0
+  },
+  "2BR 2BA (1258 SF)": {
+    "status": "inquire",
+    "count": 0,
+    "available_on": null,
+    "price_low": 0,
+    "price_high": 0
+  },
+  "2BR 2BA (1269 SF)": {
+    "status": "inquire",
+    "count": 0,
+    "available_on": "7/8/2026",
+    "price_low": 4262,
+    "price_high": 5307
+  },
+  "2BR 2BA (1274 SF)": {
+    "status": "inquire",
+    "count": 0,
+    "available_on": null,
+    "price_low": 0,
+    "price_high": 0
+  },
+  "2BR 2BA (1343 SF)": {
+    "status": "inquire",
+    "count": 0,
+    "available_on": "7/16/2026",
+    "price_low": 4569,
+    "price_high": 5662
+  }
+}
