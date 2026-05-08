@@ -1,0 +1,48 @@
+name: Eastline 2BR check
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: eastline-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install --quiet curl_cffi
+
+      - name: Run checker
+        env:
+          EASTLINE_GMAIL_FROM: ${{ secrets.EASTLINE_GMAIL_FROM }}
+          EASTLINE_GMAIL_APP_PASSWORD: ${{ secrets.EASTLINE_GMAIL_APP_PASSWORD }}
+          EASTLINE_EMAIL_TO: ${{ secrets.EASTLINE_EMAIL_TO }}
+        run: python eastline_checker.py state.json
+
+      - name: Commit updated state if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          if git diff --staged --quiet; then
+            echo "No state changes to commit."
+          else
+            git commit -m "update state.json [skip ci]"
+            git push
+          fi
