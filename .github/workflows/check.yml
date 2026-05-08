@@ -46,3 +46,36 @@ jobs:
             git commit -m "update state.json [skip ci]"
             git push
           fi
+
+      - name: Notify on failure
+        if: failure()
+        env:
+          EASTLINE_GMAIL_FROM: ${{ secrets.EASTLINE_GMAIL_FROM }}
+          EASTLINE_GMAIL_APP_PASSWORD: ${{ secrets.EASTLINE_GMAIL_APP_PASSWORD }}
+          EASTLINE_EMAIL_TO: ${{ secrets.EASTLINE_EMAIL_TO }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python <<'PY'
+          import os, smtplib, ssl
+          from email.message import EmailMessage
+          msg = EmailMessage()
+          msg["From"] = os.environ["EASTLINE_GMAIL_FROM"]
+          msg["To"] = os.environ["EASTLINE_EMAIL_TO"]
+          msg["Subject"] = "!! [Eastline] checker FAILED - needs attention"
+          msg.set_content(
+              "The Eastline 2BR availability checker on GitHub Actions failed.\n"
+              "Until this is fixed, you will stop receiving 2BR change alerts.\n\n"
+              "Failed run logs:\n" + os.environ["RUN_URL"] + "\n\n"
+              "Likely causes:\n"
+              "  - Eastline started serving Cloudflare challenges (rate-limited)\n"
+              "  - Eastline changed their HTML and the parser broke\n"
+              "  - Gmail or GitHub Actions outage\n"
+              "  - pip install issue\n\n"
+              "Open the link above to inspect the run logs, or ask Claude for help.\n"
+          )
+          ctx = ssl.create_default_context()
+          with smtplib.SMTP("smtp.gmail.com", 587, timeout=15) as s:
+              s.starttls(context=ctx)
+              s.login(os.environ["EASTLINE_GMAIL_FROM"], os.environ["EASTLINE_GMAIL_APP_PASSWORD"].replace(" ", ""))
+              s.send_message(msg)
+          PY
