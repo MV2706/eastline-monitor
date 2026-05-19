@@ -21,8 +21,8 @@
     "price_high": 0
   },
   "2BR 2BA (1247 SF)": {
-    "status": "available",
-    "count": 1,
+    "status": "inquire",
+    "count": 0,
     "available_on": "6/4/2026",
     "price_low": 4420,
     "price_high": 5374
