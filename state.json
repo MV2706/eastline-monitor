@@ -17,8 +17,8 @@
     "status": "available",
     "count": 1,
     "available_on": "7/1/2026",
-    "price_low": 4373,
-    "price_high": 5338
+    "price_low": 4446,
+    "price_high": 5333
   },
   "2BR 2BA (1247 SF)": {
     "status": "inquire",
@@ -42,11 +42,11 @@
     "price_high": 0
   },
   "2BR 2BA (1269 SF)": {
-    "status": "available",
-    "count": 1,
-    "available_on": "7/7/2026",
-    "price_low": 4306,
-    "price_high": 5250
+    "status": "inquire",
+    "count": 0,
+    "available_on": null,
+    "price_low": 0,
+    "price_high": 0
   },
   "2BR 2BA (1274 SF)": {
     "status": "inquire",
@@ -58,8 +58,8 @@
   "2BR 2BA (1343 SF)": {
     "status": "inquire",
     "count": 0,
-    "available_on": "6/24/2026",
-    "price_low": 4559,
-    "price_high": 5598
+    "available_on": null,
+    "price_low": 0,
+    "price_high": 0
   }
 }
